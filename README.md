@@ -59,12 +59,13 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -92,13 +93,24 @@ Menurut pendapat saya, penggunaan DashMap lebih sesuai untuk situasi ini. DashMa
 Walaupun kita bisa menerapkan pola Singleton untuk memastikan hanya ada satu instance data, pada kasus BambangShop yang menerapkan multithreading, DashMap merupakan pilihan yang lebih tepat. DashMap sudah dirancang untuk mendukung keamanan thread secara otomatis, sedangkan jika menggunakan pola Singleton, kita harus menangani masalah sinkronisasi secara manual, sehingga DashMap menawarkan solusi yang lebih efisien.
 
 
-
-
-
-
-
-
-
 #### Reflection Publisher-2
+
+>1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+Dalam arsitektur MVC, kita memisahkan *Service* dan *Repository* dari *Model* untuk menghindari penumpukan tanggung jawab dalam satu komponen. Jika *Model* menangani representasi data, pengelolaan basis data, dan logika bisnis sekaligus, maka hal ini akan melanggar prinsip *Single Responsibility Principle* (SRP) dari SOLID. Dengan membagi tugasnya, *Model* hanya berfungsi sebagai representasi data, *Repository* menangani operasi CRUD, dan *Service* mengelola logika bisnis. Pendekatan ini membuat kode lebih bersih, mudah dipelihara, lebih fleksibel, dan memungkinkan perubahan pada database tanpa mengganggu logika bisnis.
+
+>2.What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+Jika kita mengandalkan *Model* untuk semua fungsi, maka beban tanggung jawabnya akan terlalu besar, mencakup representasi data, pengelolaan basis data, dan logika bisnis. Hal ini membuat kode menjadi sulit dibaca, dipelihara, dan diuji karena berbagai fungsi bisa saling bergantung satu sama lain. Selain itu, hal ini juga mengurangi tingkat *reusability* kode dan menyulitkan pengujian unit. Sebagai contoh, dalam proyek ini, jika hanya menggunakan *Model*, maka *Model Program* harus menangani kueri *Subscriber*, membuat data *Notification*, dan mengirim notifikasi ke API eksternal. Dengan menggabungkan semua tanggung jawab dalam satu komponen, kompleksitas kode akan meningkat secara signifikan.
+
+>3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+Saya telah mengeksplorasi Postman dan menemukan beberapa fitur yang sangat membantu dalam pengujian API. Beberapa fitur yang berguna antara lain:
+- **Request Testing**: Memungkinkan pengujian API (GET, POST, PUT, DELETE) tanpa harus menulis kode di sisi frontend atau backend terlebih dahulu.
+- **Collection**: Menyimpan berbagai request API dalam satu set untuk kemudahan akses.
+- **Environment Variables**: Memudahkan perubahan URL atau token API tanpa perlu mengedit setiap request secara manual.
+- **Automated Tests**: Menjalankan skrip otomatis untuk memverifikasi apakah API mengembalikan data yang benar atau menampilkan error.
+
+Dengan menggunakan Postman, saya dan tim dapat menghemat waktu dalam pengembangan dan pengujian API, sehingga mempercepat proses pengerjaan proyek.
 
 #### Reflection Publisher-3
