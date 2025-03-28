@@ -1,12 +1,14 @@
+use std::thread;
 
-use rocket::serde::{Deserialize, Serialize};
+use bambangshop::{Result, compose_error_response};
+use rocket::http::Status;
+use crate::model::notification::Notification;
+use crate::model::product::Product;
+use crate::model::subscriber::Subscriber;
+use crate::repository::subscriber::SubscriberRepository;
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
-#[serde(crate = "rocket::serde")]
-pub struct Notification {
-    pub product_title: String,
-    pub product_type: String,
-    pub product_url: String,
-    pub subscriber_name: String,
-    pub status: String,
+pub struct NotificationService;
+
+impl NotificationService{
+
 }
