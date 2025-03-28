@@ -48,15 +48,16 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [x] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Commit: `Create Subscriber model struct.`
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Subscriber repository.`
+    -   [x] Commit: `Implement list_all function in Subscriber repository.`
+    -   [x] Commit: `Implement delete function in Subscriber repository.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +78,26 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+>1. In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+
+Dalam pola desain Observer, semua subscriber harus mengimplementasikan antarmuka yang sama agar berbagai implementasi dapat merespons pembaruan secara konsisten. Oleh karena itu, jika dalam BambangShop terdapat beberapa jenis subscriber, lebih baik menggunakan interface atau trait agar setiap subscriber memiliki perilaku yang seragam. Saat ini, karena hanya ada satu jenis subscriber, cukup menggunakan satu struct model. Namun, untuk menjaga fleksibilitas dalam pengembangan di masa depan, lebih baik menerapkan interface atau trait sejak awal.
+
+
+>2. id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+Menurut pendapat saya, penggunaan DashMap lebih sesuai untuk situasi ini. DashMap memudahkan pengelolaan data produk dan Subscriber karena memungkinkan pencarian berdasarkan key yang unik (seperti id pada Program atau url pada Subscriber), sehingga pencarian data menjadi lebih efisien. Sedangkan, jika menggunakan Vec, pencarian harus dilakukan secara sekuensial melalui setiap elemen, yang membuatnya kurang efisien dan lebih rumit.
+
+>3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+Walaupun kita bisa menerapkan pola Singleton untuk memastikan hanya ada satu instance data, pada kasus BambangShop yang menerapkan multithreading, DashMap merupakan pilihan yang lebih tepat. DashMap sudah dirancang untuk mendukung keamanan thread secara otomatis, sedangkan jika menggunakan pola Singleton, kita harus menangani masalah sinkronisasi secara manual, sehingga DashMap menawarkan solusi yang lebih efisien.
+
+
+
+
+
+
+
+
 
 #### Reflection Publisher-2
 
